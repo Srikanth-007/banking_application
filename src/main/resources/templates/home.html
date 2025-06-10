@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+    html.body{
+        height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+    }
+       header{
+        background: linear-gradient(to right,rgb(229, 114, 13,1), rgba(176, 42, 48,1));
+        height: 70px;
+       } 
+       header h1{
+        margin-left:30px;
+        margin-right:50px;
+        margin-top: 10px;
+        color:white;
+        font-family:'Arial', Helvetica;
+        font-weight: bolder;
+        font-style: italic;
+       }
+       header h5{
+        color:white;
+       }
+       img{
+        width:100%;
+        height:auto;
+        object-fit:cover;
+       }
+       .features_benefits_section{
+        margin-top: 60px;
+       }
+       header i{
+        margin-left:30px;
+       }
+       .sidebar {
+        position: fixed;
+        left: -250px; /* Initially hidden */
+        top: 0;
+        width: 250px;
+        height: 100vh;
+        background: rgba(176, 42, 48, 1);
+        
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 15px 0;
+        padding-left:20px;
+    }
+
+    .sidebar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .sidebar.active {
+        left: 0; /* Show sidebar */
+    }
+    .sidebar ul li:hover {
+        background-color: rgba(229, 114, 13, 1); /* Hover background color */
+        
+        color: white; 
+        padding-top: 10px; 
+        padding-bottom: 10px;
+        padding-left:20px;
+        transition: 0.3s ease-in-out;
+    }
+    .features_benefits_section h2{
+        color: rgba(176, 42, 48, 1); 
+        text-align: start;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 70px;
+        margin-left: 55px;
+        margin-bottom: 10px;
+    }
+    .loan-types h2 {
+        color: rgba(176, 42, 48, 1); 
+        text-align: start;
+        font-size: 28px;
+        font-weight: bold;
+        /* font-weight: bold; */
+        margin-top: 70px;
+        margin-left: 55px;
+        margin-bottom: 20px;
+    }
+
+    .loan-item {
+        display: block;
+        padding: 0;
+        margin-left: 30px;
+        margin-right: 70px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .loan-item h3 {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        background-color: rgba(229, 114, 13, 1);
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        justify-content: space-between;
+        padding:10px;
+    }
+    .loan-item i {
+        margin-left: auto; 
+    }
+    .loan-item p {
+        display: none; 
+        background-color: white; 
+        color: black; 
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 15px;
+        padding-bottom: 20px;
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+    .loan-item.active p {
+        display: block;
+        
+    }
+
+    .footer{
+        margin-top: 80px;
+        background-color: rgba(229, 114, 13, 1);
+    }
+    .container{
+        padding:20px;
+        color:white;
+        text-align: center;
+    }
+
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <header class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-list" id="sidebarToggle" style="color: white; font-size: 30px; font-weight:bold; -webkit-text-stroke: 2px white;"></i>
+                <h1>CTS Bank</h1>
+                <h5> | Business Loans</h5>
+            </div>
+            <h5>
+                <a th:href="@{/loan-applications/form}" style="margin-right:50px;color: white; text-decoration: none;">Apply Now</a>
+            </h5>
+        </header>
+        <div id="sidebar" class="sidebar">
+            <ul>
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/loan-applications/form}">Apply Now</a></li>
+                <li><a th:href="@{/documents/viewDocument}">View Documents</a></li>
+                <li><a th:href="@{/loan-applications/track}">View Status</a></li>
+                <li><a th:href="@{/disbursement/viewDisbursement}">Track Disbursement</a></li>
+                <li><a href="/logout">Log Out</a></li>
+            </ul>
+        </div>
+        <div class="banner_img">
+            <img src="/Bankbanner.jpg" alt="banner">
+        </div>
+        <div class="features_benefits_section">
+            <h2 >Features And Benefits</h2>
+            <img src="/features.png" alt="features">
+        </div>
+        
+        
+        <div class="loan-types">
+            <h2>Types of Business Loan </h2>
+
+            <div class="loan-item" >
+                <h3>Business Loan <i class="bi bi-chevron-down"  ></i></h3>
+                <p>A general loan for businesses to manage operations, expansion, or unforeseen expenses. It can be secured (requires collateral) or unsecured (no collateral required).</p>
+            </div>
+            <div class="loan-item" >
+                <h3>Equipment Loan  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Helps businesses purchase machinery, vehicles, or equipment needed for operations. The equipment itself serves as collateral, reducing risk for lenders.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Working Capital Loan  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Short-term financing to cover daily operational expenses like salaries, inventory, and rent. Ideal for businesses facing seasonal demand fluctuations.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Government Loan  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Loans offered under government schemes to support startups and small businesses. Examples include MUDRA loans, Stand-Up India, and CGTMSE loans.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Term Loan  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>A lump-sum loan repaid in fixed installments over a specified period (short-term or long-term). Used for expansion, infrastructure, or large purchases.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Merchant Cash Advance <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Funds provided based on a business’s future credit/debit card sales. Repayments are deducted directly from daily transactions, making it suitable for retail businesses.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Invoice Financing  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Businesses sell their unpaid invoices to lenders in exchange for immediate cash. Helps maintain cash flow while waiting for client payments.</p>
+            </div>
+            <div class="loan-item">
+                <h3>Real Estate Loan  <i class="bi bi-chevron-down"  ></i></h3>
+                <p>Provides financing for purchasing commercial properties like office spaces, warehouses, or retail shops. The property itself acts as collateral.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+                <span>
+                    Address: Registered Office: CTS Bank tower, Plot No A-15, National Highways-45 Tambaram, GST Road, Chennai 600045, Tamil Nadu, India.
+                    <br>
+                    For any further queries, contact our toll free number- 1800 258 2345. 
+                </span>
+            </div>
+        </div>
+     
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script> 
+    <script>
+         document.getElementById("sidebarToggle").addEventListener("click", function() {
+        document.getElementById("sidebar").classList.toggle("active");
+    });
+
+    document.addEventListener("click", function(event) {
+        let sidebar = document.getElementById("sidebar");
+        let toggleButton = document.getElementById("sidebarToggle");
+
+        // Check if the clicked element is NOT inside the sidebar OR the toggle button
+        if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+            sidebar.classList.remove("active");
+        }
+    });
+    document.querySelectorAll('.loan-item h3').forEach(item => {
+        item.addEventListener('click', () => {
+            let parent = item.parentElement;
+            parent.classList.toggle('active'); // Toggles visibility of content
+        });
+    });
+    </script>
+</body>
+</html>

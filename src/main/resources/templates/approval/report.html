@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Report</title>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+    html, body {
+            background: linear-gradient(to right, rgba(245, 130, 32, 0.5), rgba(176, 42, 48, 0.58));
+            font-family: 'Times New Roman', Times, serif;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+        }
+    .container{
+        text-align:center;
+	    width: 90%;
+	    max-width: 900px;
+	    background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+	    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+	    animation: fadeIn 1s ease-in;
+        height: auto; /* Adjust height dynamically */
+		max-height: none; /* Remove height limit */
+
+    }
+    .btn-primary {
+            background: #b02a30;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: 0.3s;
+            width: 40%;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+ 
+        .btn-primary:hover {
+            background:#e6731a;
+            transform: scale(1.05);
+        }
+</style>
+</head>
+<body>
+	<div class="container mt-5">
+        <h2>Loan Disbursement Details</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Disbursement ID</th>
+                    <th>Application ID</th>
+                    <th>Disbursed Amount</th>
+                    <th>Disbursement Date</th>
+                    <th>Repayment Schedule</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${disbursements == null or #lists.isEmpty(disbursements)}">
+      			<td colspan="5" class="text-center">No Disbursement yet.</td>
+  			</tr>
+                <tr th:each="disbursement : ${disbursements}">
+                    <td th:text="${disbursement.disbursementId}"></td>
+                    <td th:text="${disbursement.loanApplication.applicationId}"></td>
+                    <td th:text="${disbursement.disbursedAmount}"></td>
+                    <td th:text="${disbursement.disbursementDate}"></td>
+                    <td th:text="${disbursement.repaymentSchedule}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/home}" class="btn btn-primary">Return to Homepage</a>
+    </div>
+
+</body>
+</html>
